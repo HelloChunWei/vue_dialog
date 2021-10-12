@@ -16,7 +16,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Modal from '@/components/modal_t.vue'
+import Modal from './template.vue'
 export default defineComponent({
   name: 'confirmModal',
   components: {

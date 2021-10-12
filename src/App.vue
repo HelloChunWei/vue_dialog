@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { show } from '@/modal'
+import showModal from '@/plugins/modal/index'
 
 export default defineComponent({
   name: 'App',
@@ -19,7 +19,7 @@ export default defineComponent({
     }
 
     const openModal = (componentName: string) => {
-      show({ componentName, myProps: prop1 })
+      showModal({ componentName, myProps: prop1 })
     }
     return {
       openModal

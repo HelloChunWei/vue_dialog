@@ -1,9 +1,8 @@
 import { createVNode, render } from 'vue'
-import Modal from '@/plugins/modal/modal.vue'
+import Modal from './modal.vue'
 
-export const show = ({ componentName = '', myProps }: { componentName: string, myProps: any }) => {
+export default function ({ componentName = '', myProps }: { componentName: string, myProps: any }) {
   const container = document.createElement('div')
-  
 
   const myPropss = Object.assign({}, {
     isShow: true,
@@ -24,9 +23,5 @@ export const show = ({ componentName = '', myProps }: { componentName: string, m
     close: _closeModal
   })
   document.body.appendChild(container)
-
-
-
-
   
 }

@@ -5,14 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent, toRefs } from 'vue'
+import { defineComponent, defineAsyncComponent, unref } from 'vue'
 
 export default defineComponent({
   name: 'Modal',
   props: ['myProps', 'isShow', 'close', 'componentName'],
   setup(props) {
-    const { componentName } = toRefs(props)
-    const myComponent = defineAsyncComponent(() => import(`@/components/${componentName.value}.vue`))
+    const { componentName } = unref(props)
+    const myComponent = defineAsyncComponent(() => import(`./${componentName}.vue`))
     return {
       myComponent
     }
