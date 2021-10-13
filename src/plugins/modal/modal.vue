@@ -1,7 +1,5 @@
 <template>
-  <teleport to="body">
   <component v-if="isShow" :is="myComponent" v-bind="myProps" @close="close" />
-  </teleport>
 </template>
 
 <script lang="ts">
