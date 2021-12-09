@@ -18,7 +18,7 @@ export default defineComponent({
       user_id: '這裡是modal的prop',
     }
 
-    const openModal = (componentName: string) => {
+    const openModal = (componentName: 'confirmModal' | 'inputModal') => {
       showModal({ componentName, myProps: prop1 })
     }
     return {

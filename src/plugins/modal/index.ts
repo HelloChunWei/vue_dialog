@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import Modal from './modal.vue'
 
-export default function ({ componentName = '', myProps }: { componentName: string, myProps: any }) {
+type componentNameType = 'confirmModal' | 'inputModal'
+
+export default function ({ componentName, myProps }: { componentName: componentNameType, myProps: any }) {
   const container = document.createElement('div')
 
   const _closeModal = function () {
