@@ -3,24 +3,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, defineAsyncComponent, unref, watchEffect, ref } from 'vue'
-import { unrefElement } from '@vueuse/core'
-import { findMaxZindex } from '@/utils/helper'
+import {
+  defineComponent,
+  defineAsyncComponent,
+  unref,
+  watchEffect,
+  ref,
+} from "vue";
+import { unrefElement } from "@vueuse/core";
+import { findMaxZindex } from "@/utils/helper";
 
 export default defineComponent({
-  name: 'Modal',
-  props: ['myProps', 'isShow', 'close', 'componentName'],
+  name: "Modal",
+  props: ["myProps", "isShow", "close", "component"],
   setup(props) {
-    const { componentName, isShow } = unref(props)
-    const myComponent = defineAsyncComponent(() => import(`./${componentName}.vue`))
-    const modal = ref<HTMLElement | null>(null)
+    const { component, isShow } = unref(props)
+    const myComponent = defineAsyncComponent(
+      () => import(`./${component}.vue`)
+    );
+    const modal = ref<HTMLElement | null>(null);
 
-    watchEffect(onInvalidate => {
-      if (!isShow) return
+    watchEffect((onInvalidate) => {
+      if (!isShow) return;
 
       // 控制 body 的 scroll
       const overflow = document.documentElement.style.overflow
-      document.documentElement.style.overflow = 'hidden'
+      document.documentElement.style.overflow = "hidden"
 
       const zIndex = findMaxZindex()
       if (unrefElement(modal)) {
@@ -36,8 +44,8 @@ export default defineComponent({
     return {
       myComponent,
       modal
-    }
+    };
   },
-})
+});
 </script>
 

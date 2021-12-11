@@ -1,30 +1,31 @@
 <template>
   <div>
-    <button @click="openModal('confirmModal')">第一個彈窗</button>
- </div>
+    <button @click="btnOpenModal('confirmModal')">第一個彈窗</button>
+  </div>
   <div style="margin-top: 50px">
-    <button @click="openModal('inputModal')">第2個彈窗</button>
- </div>
+    <button @click="btnOpenModal('inputModal')">第2個彈窗</button>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import showModal from '@/plugins/modal/index'
+import { defineComponent } from "vue";
+import { useModal } from "@/plugins/modal/index";
 
 export default defineComponent({
-  name: 'App',
-  setup () {
+  name: "App",
+  setup() {
     const prop1 = {
-      user_id: '這裡是modal的prop',
-    }
+      user_id: "這裡是modal的prop",
+    };
+    const { openModal } = useModal();
 
-    const openModal = (componentName: 'confirmModal' | 'inputModal') => {
-      showModal({ componentName, myProps: prop1 })
-    }
+    const btnOpenModal = (component: "confirmModal" | "inputModal") => {
+      openModal({ component, myProps: prop1 });
+    };
     return {
-      openModal
-    }
-  }
+      btnOpenModal,
+    };
+  },
 });
 </script>
 
