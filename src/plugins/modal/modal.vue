@@ -31,8 +31,8 @@ export default defineComponent({
       document.documentElement.style.overflow = "hidden"
 
       const zIndex = findMaxZindex()
-      if (unrefElement(modal)) {
-        unrefElement(modal)!.style.zIndex = zIndex.toString()
+      if (unrefElement(modal.value)) {
+        unrefElement(modal.value)!.style.zIndex = zIndex.toString()
       }
 
       onInvalidate(() => {
