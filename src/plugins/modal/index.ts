@@ -1,4 +1,4 @@
-import { createApp, reactive, toRefs, h, provide } from 'vue'
+import { createApp, reactive, toRefs, h, provide, readonly } from 'vue'
 import { CLOSE_MODAL } from './provideInject'
 import Modal from './modal.vue'
 
