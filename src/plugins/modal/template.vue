@@ -22,17 +22,18 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, inject } from 'vue'
 import { unrefElement } from '@vueuse/core'
+import { CLOSE_MODAL } from './provideInject'
 export default defineComponent({
-  setup(props, { emit }) {
+  setup() {
     const modalMask = ref<HTMLElement | null>(null)
-    const close = () => {
-      emit('close')
-    }
+    const close = inject(CLOSE_MODAL)
     const closeOutside = (e: Event) => {
       if (unrefElement(modalMask) === e.target) {
-        close()
+        if (close) {
+          close()
+        }
       }
     }
     return {

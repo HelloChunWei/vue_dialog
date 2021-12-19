@@ -1,4 +1,5 @@
-import { createApp, reactive, toRefs, h } from 'vue'
+import { createApp, reactive, toRefs, h, provide } from 'vue'
+import { CLOSE_MODAL } from './provideInject'
 import Modal from './modal.vue'
 
 type componentNameType = 'confirmModal' | 'inputModal'
@@ -21,6 +22,7 @@ export const useModal = () => {
     const mockModal = {
       name: 'mockModal',
       setup () {
+        provide(CLOSE_MODAL, data.close)
         return {
           ...toRefs(data)
         }
