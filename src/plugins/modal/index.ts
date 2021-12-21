@@ -32,7 +32,6 @@ export const useModal = () => {
           isShow: data.isShow,
           component: data.component,
           myProps: data.myProps,
-          close: data.close
         })
       }
     }

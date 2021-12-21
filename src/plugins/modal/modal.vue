@@ -1,30 +1,30 @@
 <template>
-  <component ref="modal" v-if="isShow" :is="myComponent" v-bind="myProps" @close="close" />
+  <component ref="modal" v-if="isShow" :is="myComponent" v-bind="myProps" />
 </template>
 
 <script lang="ts">
 import {
   defineComponent,
   defineAsyncComponent,
-  unref,
   watchEffect,
   ref,
-} from "vue";
-import { unrefElement } from "@vueuse/core";
-import { findMaxZindex } from "@/utils/helper";
+  toRefs
+} from "vue"
+import { unrefElement } from "@vueuse/core"
+import { findMaxZindex } from "@/utils/helper"
 
 export default defineComponent({
   name: "Modal",
-  props: ["myProps", "isShow", "close", "component"],
+  props: ["myProps", "isShow", "component"],
   setup(props) {
-    const { component, isShow } = unref(props)
+    const { component, isShow } = toRefs(props)
     const myComponent = defineAsyncComponent(
-      () => import(`./${component}.vue`)
+      () => import(`./${component.value}.vue`)
     );
     const modal = ref<HTMLElement | null>(null);
 
     watchEffect((onInvalidate) => {
-      if (!isShow) return;
+      if (!isShow.value) return
 
       // 控制 body 的 scroll
       const overflow = document.documentElement.style.overflow
