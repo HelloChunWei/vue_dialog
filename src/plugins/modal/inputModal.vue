@@ -4,8 +4,7 @@
       我第二個modal
     </template>
     <template #body>
-      <input type="text" v-model="test">
-      {{ test }}
+      {{ product }}
     </template>
     <template #footer="{ close }">
       <button @click="close">
@@ -14,20 +13,9 @@
     </template>
   </modal>
 </template>
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script lang="ts" setup>
 import Modal from './template.vue'
-export default defineComponent({
-  name: 'confirmModal',
-  components: {
-    Modal
-  },
-  setup () {
-    const test = ref('')
-    return {
-      test
-    }
-  }
-})
+import { Props } from './propsInterface/inputModalProps'
+defineProps<Props>()
 </script>
 

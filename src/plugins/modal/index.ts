@@ -1,11 +1,28 @@
 import { createApp, reactive, toRefs, h, provide, readonly } from 'vue'
 import { CLOSE_MODAL } from './provideInject'
 import Modal from './modal.vue'
+import {Props as confimModalProps} from './propsInterface/confirmModalProps'
+import {Props as inputModalProps} from './propsInterface/inputModalProps'
 
-type componentNameType = 'confirmModal' | 'inputModal'
+type ComponentAndProps = {
+  component: 'confirmModal',
+  Props: confimModalProps
+} | {
+  component: 'inputModal',
+  Props: inputModalProps
+}
+
+type Components = ComponentAndProps['component']
+
+type Props<T extends ComponentAndProps, K> = T extends { component: K } ?  T['Props'] : never
+
+
 
 export const useModal = () => {
-  const openModal = ({ component, myProps }: { component: componentNameType, myProps: any }) => {
+  const openModal = function <T extends Components>(
+    component: T,
+    myProps: Props<ComponentAndProps, T>
+    ){
     const container = document.createElement('div')
     const _closeModal = function () {
       data.isShow = false

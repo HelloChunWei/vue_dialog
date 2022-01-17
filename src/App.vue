@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="btnOpenModal('confirmModal')">第一個彈窗</button>
+    <button @click="btnOpenModal1">第一個彈窗</button>
   </div>
   <div style="margin-top: 50px">
-    <button @click="btnOpenModal('inputModal')">第2個彈窗</button>
+    <button @click="btnOpenModal2">第2個彈窗</button>
   </div>
 </template>
 
@@ -19,11 +19,15 @@ export default defineComponent({
     };
     const { openModal } = useModal();
 
-    const btnOpenModal = (component: "confirmModal" | "inputModal") => {
-      openModal({ component, myProps: prop1 });
+    const btnOpenModal1 = () => {
+      openModal("confirmModal", { user_id: prop1.user_id });
+    };
+    const btnOpenModal2 = () => {
+      openModal("inputModal", { product: 123 });
     };
     return {
-      btnOpenModal,
+      btnOpenModal1,
+      btnOpenModal2
     };
   },
 });

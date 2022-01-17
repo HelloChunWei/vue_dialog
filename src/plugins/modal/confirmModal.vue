@@ -16,15 +16,9 @@
     </template>
   </modal>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
 import Modal from './template.vue'
-export default defineComponent({
-  name: 'confirmModal',
-  components: {
-    Modal
-  },
-  props: ['user_id'],
-})
+import { Props } from './propsInterface/confirmModalProps'
+defineProps<Props>()
 </script>
 
