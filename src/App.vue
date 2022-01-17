@@ -5,6 +5,9 @@
   <div style="margin-top: 50px">
     <button @click="btnOpenModal2">第2個彈窗</button>
   </div>
+  <div style="margin-top: 50px">
+    <button @click="btnOpenModal3">第3個彈窗</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,9 +28,13 @@ export default defineComponent({
     const btnOpenModal2 = () => {
       openModal("inputModal", { product: 123 });
     };
+    const btnOpenModal3 = () => {
+      openModal("alertModal")
+    };
     return {
       btnOpenModal1,
-      btnOpenModal2
+      btnOpenModal2,
+      btnOpenModal3
     };
   },
 });
