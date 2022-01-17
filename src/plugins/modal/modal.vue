@@ -11,16 +11,15 @@ import {
   toRefs
 } from "vue"
 import { unrefElement } from "@vueuse/core"
-import { findMaxZindex } from "@/utils/helper"
+import { findMaxZindex } from "../../utils/helper"
 
+const modules = import.meta.glob('./*.vue')
 export default defineComponent({
   name: "Modal",
   props: ["myProps", "isShow", "component"],
   setup(props) {
     const { component, isShow } = toRefs(props)
-    const myComponent = defineAsyncComponent(
-      () => import(`./${component.value}.vue`)
-    );
+    const myComponent = defineAsyncComponent(modules[`./${component.value}.vue`])
     const modal = ref<HTMLElement | null>(null);
 
     watchEffect((onInvalidate) => {

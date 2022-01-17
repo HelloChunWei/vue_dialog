@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useModal } from "@/plugins/modal/index";
+import { useModal } from "./plugins/modal/index";
 
 export default defineComponent({
   name: "App",
