@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer">
           <slot name="footer" :close="close">
-            <button @click="$emit('close')">
+            <button @click="close">
               取消
             </button>
           </slot>
