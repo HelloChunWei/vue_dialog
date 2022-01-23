@@ -49,7 +49,9 @@ export const useModal = () => {
     const container = document.createElement('div')
     const _closeModal = function () {
       data.isShow = false
-      container.parentNode!.removeChild(container)
+      setTimeout(() => {
+        container.parentNode!.removeChild(container)
+      }, 1000)
     }
 
     const data = reactive({

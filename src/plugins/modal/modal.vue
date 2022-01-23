@@ -1,5 +1,7 @@
 <template>
-  <component ref="modal" v-if="isShow" :is="myComponent" v-bind="myProps" />
+  <fade>
+    <component ref="modal" v-if="isShow" :is="myComponent" v-bind="myProps" />
+  </fade>
 </template>
 
 <script lang="ts">
@@ -12,11 +14,15 @@ import {
 } from "vue"
 import { unrefElement } from "@vueuse/core"
 import { findMaxZindex } from "../../utils/helper"
+import Fade from '../transition/fade.vue'
 
 const modules = import.meta.glob('./*.vue')
 export default defineComponent({
   name: "Modal",
   props: ["myProps", "isShow", "component"],
+  components: {
+    Fade
+  },
   setup(props) {
     const { component, isShow } = toRefs(props)
     const myComponent = defineAsyncComponent(modules[`./${component.value}.vue`])
