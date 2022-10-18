@@ -1,11 +1,20 @@
-# Vue 3 + Typescript + Vite
+# Vue dialog hook
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+原文: [用 Vue3 實做一個簡單的 modal hook 吧](https://github.com/HelloJunWei/blog/issues/11)的原始碼。
 
-## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## 最直覺的做法
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/18310281/184474363-3463ae85-b245-414d-bcec-f9a11ee9160d.png">
 
-## Type Support For `.vue` Imports in TS
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+上圖是我們很直覺會在vue使用 dialog 的方式，但我始終覺得不是很好維護以及擴充，所以這個 hook 可以從上方呼叫的方式變成這樣:
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/18310281/184474427-09dfb767-b558-425a-99a7-8479e8be0e9a.png">
+
+
+---
+
+並且利用 Typescript 簡化參數的方式，讓他可以去簡單地找到到底有哪一些 dialog 以及該 dialog 有什麼 props.
+
+https://user-images.githubusercontent.com/18310281/184474798-960b6e66-f51c-4dfc-a0fb-ee6c40f9678c.mov
+
