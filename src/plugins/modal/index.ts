@@ -47,6 +47,13 @@ export const useModal = () => {
   // 利用 typescript function overload 去實作
   function dispatch( component: any, myProps?: any){
     const container = document.createElement('div')
+
+    const data = reactive({
+      isShow: true,
+      component,
+      myProps,
+    })
+
     const _closeModal = function () {
       data.isShow = false
       setTimeout(() => {
@@ -54,17 +61,10 @@ export const useModal = () => {
       }, 1000)
     }
 
-    const data = reactive({
-      isShow: true,
-      component,
-      myProps,
-      close: _closeModal
-    })
-
     const mockModal = {
       name: 'mockModal',
       setup () {
-        provide(CLOSE_MODAL, data.close)
+        provide(CLOSE_MODAL, _closeModal)
         return {
           ...toRefs(data)
         }
