@@ -17,7 +17,7 @@ type ComponentAndProps = {
 }
 
 
-type Props<T extends ComponentAndProps, K> = T extends { component: K } ?  T['Props'] : never
+type Props<T extends ComponentAndProps, K> = T extends { component: K } ?  T : never
 
 
 
@@ -42,7 +42,7 @@ export const useModal = () => {
   // component 是有定義props 的話是走這個
   function dispatch<T extends ComplexActionType['component']>(
     component: T,
-    myProps: Props<ComponentAndProps, T>
+    myProps: Props<ComponentAndProps, T>['Props']
   ): void
   // 利用 typescript function overload 去實作
   function dispatch( component: any, myProps?: any){
