@@ -16,6 +16,8 @@
 <script lang="ts">
 import Modal from './template.vue'
 import { defineComponent } from 'vue'
+import { useDialog } from "./index";
+import inputDialog from "./inputDialog.vue"
 export default defineComponent({
   name: 'ConfirmDialog',
   components: {
@@ -24,7 +26,13 @@ export default defineComponent({
   props: {
     user_id: {
       type: String,
+      required: true
     },
+  },
+  setup () {
+    const { openDialog } = useDialog()
+
+    openDialog(inputDialog)
   }
 })
 

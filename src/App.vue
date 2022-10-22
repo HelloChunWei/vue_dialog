@@ -26,14 +26,18 @@ export default defineComponent({
     const { openDialog } = useDialog();
 
     const btnOpenDialog1 = () => {
+    
       openDialog(confirmDialog, {
-        user_id: '321'
-      })
+        user_id: 's'
+      });
     };
     const btnOpenDialog2 = () => {
-      openDialog(inputDialog, { product: 123 });
+      openDialog(inputDialog, {
+        product: 1
+      });
     };
     const btnOpenDialog3 = () => {
+      
       openDialog(alertDialog)
     };
     return {
