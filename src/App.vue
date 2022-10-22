@@ -29,7 +29,7 @@ export default defineComponent({
 
     const btnOpenDialog1 = () => {
       openDialog(confirmDialog, {
-        user_id: '321'
+        user_id: prop1.user_id
       })
     };
     const btnOpenDialog2 = () => {
