@@ -15,7 +15,7 @@ export const useDialog = () => {
   function openDialog<PropsOrPropOptions, Props>(component: ComponentWithoutProps): void
 
   // component 是有定義props 的話是走這個
-  function openDialog<PropsOrPropOptions, Props>(component: ComponentWithProps<PropsOrPropOptions, Props>, props: (Props) | ({} extends Props ? null : never)): void;
+  function openDialog<PropsOrPropOptions, Props>(component: ComponentWithProps<PropsOrPropOptions, Props> | DefineComponent, props: (Props) | ({} extends Props ? null : never)): void;
 
   // 利用 typescript function overload 去實作
   function openDialog( component: any, props?: any){
