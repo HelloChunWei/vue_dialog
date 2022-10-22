@@ -24,11 +24,11 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { unrefElement } from '@vueuse/core'
-import { CLOSE_MODAL, injectStrict } from './provideInject'
+import { CLOSE_DIALOG, injectStrict } from './provideInject'
 export default defineComponent({
   setup() {
     const modalMask = ref<HTMLElement | null>(null)
-    const close = injectStrict(CLOSE_MODAL)
+    const close = injectStrict(CLOSE_DIALOG)
     const closeOutside = (e: Event) => {
       if (unrefElement(modalMask) === e.target) {
         close()

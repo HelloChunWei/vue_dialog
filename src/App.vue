@@ -1,40 +1,42 @@
 <template>
   <div>
-    <button @click="btnOpenModal1">第一個彈窗</button>
+    <button @click="btnOpenDialog1">第一個彈窗</button>
   </div>
   <div style="margin-top: 50px">
-    <button @click="btnOpenModal2">第2個彈窗</button>
+    <button @click="btnOpenDialog2">第2個彈窗</button>
   </div>
   <div style="margin-top: 50px">
-    <button @click="btnOpenModal3">第3個彈窗</button>
+    <button @click="btnOpenDialog3">第3個彈窗</button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useModal } from "./plugins/modal/index";
+import { useDialog } from "./plugins/dialog/index";
 
 export default defineComponent({
   name: "App",
   setup() {
     const prop1 = {
-      user_id: "這裡是modal的prop",
+      user_id: "USER_ID",
     };
-    const { openModal } = useModal();
+    const { openDialog } = useDialog();
 
-    const btnOpenModal1 = () => {
-      openModal("confirmModal", { user_id: prop1.user_id });
+    const btnOpenDialog1 = () => {
+      openDialog('confirmDialog', {
+        user_id: '321'
+      })
     };
-    const btnOpenModal2 = () => {
-      openModal("inputModal", { product: 123 });
+    const btnOpenDialog2 = () => {
+      openDialog("inputDialog", { product: 123 });
     };
-    const btnOpenModal3 = () => {
-      openModal("alertModal")
+    const btnOpenDialog3 = () => {
+      openDialog("alertDialog")
     };
     return {
-      btnOpenModal1,
-      btnOpenModal2,
-      btnOpenModal3
+      btnOpenDialog1,
+      btnOpenDialog2,
+      btnOpenDialog3
     };
   },
 });

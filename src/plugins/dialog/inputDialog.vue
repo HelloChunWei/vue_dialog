@@ -1,19 +1,23 @@
 <template>
   <modal>
     <template #header>
-      我是頭
+      header
     </template>
     <template #body>
-      alertModal
+      {{ product }}
     </template>
     <template #footer="{ close }">
       <button @click="close">
-        取消
+        close
       </button>
     </template>
   </modal>
 </template>
 <script lang="ts" setup>
 import Modal from './template.vue'
-</script>
+import { Props } from './propsInterface/inputDialogProps'
+import { CLOSE_DIALOG, injectStrict } from './provideInject'
+const props = defineProps<Props>()
+const close = injectStrict(CLOSE_DIALOG)
+</script> 
 
