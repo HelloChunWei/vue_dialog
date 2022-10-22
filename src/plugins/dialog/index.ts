@@ -1,9 +1,9 @@
-import { ComponentOptions, VNodeProps, createApp, reactive, toRefs, h, provide } from 'vue'
+import Vue, { ComponentOptions, reactive, toRefs, h, provide, DefineComponent } from 'vue'
 import { CLOSE_DIALOG } from './provideInject'
 import Modal from './Modal.vue'
 
 // from vue.core.d.ts
-type RawProps = VNodeProps & {
+type RawProps = {
   __v_isVNode?: never;
   [Symbol.iterator]?: never;
 } & Record<string, any>;
@@ -18,10 +18,10 @@ export const useDialog = () => {
 
   // 如果 component 沒有 props 這樣就可以 openDialog(component)
   // 後面就不用帶成這樣 openDialog(component, {})
-  function openDialog<P extends ExtractEmptyProps<ComponentOptions>>(component: ComponentOptions<P>): void
+  function openDialog<P extends ExtractEmptyProps<DefineComponent>>(component: DefineComponent<P>): void
 
   // component 是有定義props 的話是走這個
-  function openDialog<P>(component: ComponentOptions<P>, props: (RawProps & P) | ({} extends P ? null : never)): void;
+  function openDialog<P>(component: DefineComponent<P>, props: (RawProps & P) | ({} extends P ? null : never)): void;
 
   // 利用 typescript function overload 去實作
   function openDialog( component: any, props?: any){
@@ -49,16 +49,18 @@ export const useDialog = () => {
       },
       render () {
         return h(Modal, {
-          isShow: data.isShow,
-          component,
-          myProps: data.props,
+          props: {
+            isShow: data.isShow,
+            component,
+            myProps: data.props,
+          }
         })
       }
     }
 
-    const vnode = createApp(mockDialog)
+    const vnode = new Vue(mockDialog)
     document.body.appendChild(container)
-    vnode.mount(container)
+    vnode.$mount(container)
   }
   return {
     openDialog

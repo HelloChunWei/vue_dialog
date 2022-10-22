@@ -1,12 +1,14 @@
 <template>
   <div>
-    <button @click="btnOpenDialog1">第一個彈窗</button>
-  </div>
-  <div style="margin-top: 50px">
-    <button @click="btnOpenDialog2">第2個彈窗</button>
-  </div>
-  <div style="margin-top: 50px">
-    <button @click="btnOpenDialog3">第3個彈窗</button>
+    <div>
+      <button @click="btnOpenDialog1">第一個彈窗</button>
+    </div>
+    <div style="margin-top: 50px">
+      <button @click="btnOpenDialog2">第2個彈窗</button>
+    </div>
+    <div style="margin-top: 50px">
+      <button @click="btnOpenDialog3">第3個彈窗</button>
+    </div>
   </div>
 </template>
 

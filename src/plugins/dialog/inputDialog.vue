@@ -13,11 +13,21 @@
     </template>
   </modal>
 </template>
-<script lang="ts" setup>
+<script lang="ts">
 import Modal from './template.vue'
-import { Props } from './propsInterface/inputDialogProps'
-import { CLOSE_DIALOG, injectStrict } from './provideInject'
-const props = defineProps<Props>()
-const close = injectStrict(CLOSE_DIALOG)
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'InputDialog',
+  components: {
+    Modal
+  },
+  props: {
+    product: {
+      type: Number,
+      required: true
+    }
+  }
+})
 </script> 
 

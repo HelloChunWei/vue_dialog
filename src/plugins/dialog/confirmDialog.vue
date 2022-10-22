@@ -13,9 +13,21 @@
     </template>
   </modal>
 </template>
-<script lang="ts" setup>
+<script lang="ts">
 import Modal from './template.vue'
-import { Props } from './propsInterface/confirmDialogProps'
-defineProps<Props>()
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'ConfirmDialog',
+  components: {
+    Modal
+  },
+  props: {
+    user_id: {
+      type: String,
+      required: true
+    }
+  }
+})
 </script>
 
