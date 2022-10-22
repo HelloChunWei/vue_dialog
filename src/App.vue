@@ -13,6 +13,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useDialog } from "./plugins/dialog/index";
+import confirmDialog from "./plugins/dialog/confirmDialog.vue"
+import inputDialog from "./plugins/dialog/inputDialog.vue"
+import alertDialog from "./plugins/dialog/alertDialog.vue"
 
 export default defineComponent({
   name: "App",
@@ -23,15 +26,15 @@ export default defineComponent({
     const { openDialog } = useDialog();
 
     const btnOpenDialog1 = () => {
-      openDialog('confirmDialog', {
+      openDialog(confirmDialog, {
         user_id: '321'
       })
     };
     const btnOpenDialog2 = () => {
-      openDialog("inputDialog", { product: 123 });
+      openDialog(inputDialog, { product: 123 });
     };
     const btnOpenDialog3 = () => {
-      openDialog("alertDialog")
+      openDialog(alertDialog)
     };
     return {
       btnOpenDialog1,

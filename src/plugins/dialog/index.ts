@@ -1,56 +1,35 @@
-import { createApp, reactive, toRefs, h, provide, readonly } from 'vue'
+import { ComponentOptions, VNodeProps, createApp, reactive, toRefs, h, provide } from 'vue'
 import { CLOSE_DIALOG } from './provideInject'
-import Modal from './modal.vue'
-import {Props as confimDialogProps} from './propsInterface/confirmDialogProps'
-import {Props as inputDialogProps} from './propsInterface/inputDialogProps'
+import Modal from './Modal.vue'
 
-// component and prop define
-type ComponentAndProps = {
-  component: 'confirmDialog',
-  Props: confimDialogProps
-} | {
-  component: 'inputDialog',
-  Props: inputDialogProps
-} | {
-  component: 'alertDialog',
-  Props: {}
-}
+// from vue.core.d.ts
+type RawProps = VNodeProps & {
+  __v_isVNode?: never;
+  [Symbol.iterator]?: never;
+} & Record<string, any>;
 
-type SingleComponentAndProps<T extends ComponentAndProps, K> = T extends { component: K } ?  T : never
-// type test = SingleComponentAndProps<ComponentAndProps, 'confirmDialog'>
-
-
-type ExtractEmptyProps<A extends ComponentAndProps> = A extends any
-  ? {} extends A['Props']
-    ? A
-    : never
+type ExtractEmptyProps<P> = P extends any
+  ? {} extends P
+  ? P
   : never
-
-// 把沒有 props 的挑出來
-type ComponentWithoutProps = ExtractEmptyProps<ComponentAndProps>
-// 利用 exclude 就可以把有props的抓出來
-type ComponentWithProps = Exclude<ComponentAndProps, ComponentWithoutProps>
-
+  : never
 
 export const useDialog = () => {
 
-  // 如果 component 沒有 props 這樣就可以 openDialog('component')
-  // 後面就不用帶成這樣 openDialog('component', {})
-  function openDialog<T extends ComponentWithoutProps['component']>(component: T): void
+  // 如果 component 沒有 props 這樣就可以 openDialog(component)
+  // 後面就不用帶成這樣 openDialog(component, {})
+  function openDialog<P extends ExtractEmptyProps<ComponentOptions>>(component: ComponentOptions<P>): void
 
   // component 是有定義props 的話是走這個
-  function openDialog<T extends ComponentWithProps['component']>(
-    component: T,
-    myProps: SingleComponentAndProps<ComponentAndProps, T>['Props']
-  ): void
+  function openDialog<P>(component: ComponentOptions<P>, props: (RawProps & P) | ({} extends P ? null : never)): void;
+
   // 利用 typescript function overload 去實作
-  function openDialog( component: any, myProps?: any){
+  function openDialog( component: any, props?: any){
     const container = document.createElement('div')
 
     const data = reactive({
       isShow: true,
-      component,
-      myProps,
+      props,
     })
 
     const closeDialog = function () {
@@ -71,8 +50,8 @@ export const useDialog = () => {
       render () {
         return h(Modal, {
           isShow: data.isShow,
-          component: data.component,
-          myProps: data.myProps,
+          component,
+          myProps: data.props,
         })
       }
     }
