@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "test": "echo test",
     "preview": "vite preview",
-    "e2e": "concurrently -k \"npm run dev\" \"npm run wait:test\"",
+    "e2e": "concurrently -r -k -s first \"npm run dev\" \"npm run wait:test\"",
     "wait:test": "wait-on http://localhost:3000/index.html && npx playwright test"
   },
   "dependencies": {
