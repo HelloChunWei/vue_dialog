@@ -13,15 +13,9 @@
     </template>
   </modal>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import Modal from './template.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, defineProps } from 'vue'
 
-export default defineComponent({
-  name: 'AlertModal',
-  components: {
-    Modal
-  }
-})
 </script>
 
