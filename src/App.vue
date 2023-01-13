@@ -1,12 +1,14 @@
 <template>
   <div>
-    <button @click="btnOpenDialog1">第一個彈窗</button>
-  </div>
-  <div style="margin-top: 50px">
-    <button @click="btnOpenDialog2">第2個彈窗</button>
-  </div>
-  <div style="margin-top: 50px">
-    <button @click="btnOpenDialog3">第3個彈窗</button>
+    <div>
+      <button @click="btnOpenDialog1">第一個彈窗</button>
+    </div>
+    <div style="margin-top: 50px">
+      <button @click="btnOpenDialog2">第2個彈窗</button>
+    </div>
+    <div style="margin-top: 50px">
+      <button @click="btnOpenDialog3">第3個彈窗</button>
+    </div>
   </div>
 </template>
 
@@ -26,18 +28,14 @@ export default defineComponent({
     const { openDialog } = useDialog();
 
     const btnOpenDialog1 = () => {
-    
       openDialog(confirmDialog, {
-        user_id: 's'
-      });
+        user_id: prop1.user_id
+      })
     };
     const btnOpenDialog2 = () => {
-      openDialog(inputDialog, {
-        product: 1
-      });
+      openDialog(inputDialog, { product: 123 });
     };
     const btnOpenDialog3 = () => {
-      
       openDialog(alertDialog)
     };
     return {

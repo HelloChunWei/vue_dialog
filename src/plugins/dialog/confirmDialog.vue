@@ -32,7 +32,7 @@ export default defineComponent({
   setup () {
     const { openDialog } = useDialog()
 
-    openDialog(inputDialog)
+    openDialog(inputDialog, { product: '2' })
   }
 })
 
