@@ -10,6 +10,7 @@
     "wait:test": "wait-on http://localhost:3000/index.html && npx playwright test"
   },
   "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vueuse/core": "^7.5.3",
     "concurrently": "^7.6.0",
     "vite-plugin-vue-type-imports": "^0.1.3",
