@@ -5,20 +5,15 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "test": "echo test",
-    "preview": "vite preview",
-    "e2e": "concurrently -r -k -s first \"npm run dev\" \"npm run wait:test\"",
-    "wait:test": "wait-on http://localhost:3000/index.html && npx playwright test"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vueuse/core": "^7.5.3",
-    "concurrently": "^7.6.0",
     "vite-plugin-vue-type-imports": "^0.1.3",
-    "vue": "^3.2.45",
-    "wait-on": "^6.0.1"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@playwright/test": "^1.28.1",
     "@vitejs/plugin-vue": "^4.0.0",
     "typescript": "^4.8.4",
     "vite": "^4.1.1",
