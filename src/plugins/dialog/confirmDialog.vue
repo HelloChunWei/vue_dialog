@@ -4,7 +4,8 @@
       header
     </template>
     <template #body>
-      {{ user_id }}
+     <p> {{ user_id }}</p>
+     <p>{{  id  }}</p>
     </template>
     <template #footer="{ close }">
       <button @click="close">
@@ -23,8 +24,12 @@ export default defineComponent({
   },
   props: {
     user_id: {
+      type: Boolean,
+      default: false,
+    },
+    id: {
       type: String,
-      required: true
+      required: true,
     },
   },
 })
